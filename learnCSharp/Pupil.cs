@@ -1,10 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace learnCSharp
 {
     class Pupil : Person
+        public enum type
+        {
+            CARER, SIBLING,
+        };
     {
         LinkedList testResults;
 
