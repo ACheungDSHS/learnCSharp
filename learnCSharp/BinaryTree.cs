@@ -18,7 +18,7 @@ public class BinaryTree<T> where T : IComparable
     {
         this.data = data;
         left = null;
-        right = null;
+        right = null; 
     }
 
     /// <summary>
