@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -7,11 +7,42 @@ namespace learnCSharp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(String[] args)
         {
             Console.WriteLine("Hello World!");
 
-            schoolDirectory();
+            graph();
+        }
+
+        static void graph()
+        {
+            var london = new GraphNode<String>("London");
+            var edinburgh = new GraphNode<String>("Edinburgh");
+            var leeds = new GraphNode<String>("Leeds");
+            var glasgow = new GraphNode<String>("Glasgow");
+
+            london.ConnectTo(edinburgh, 650);
+            london.ConnectTo(leeds, 400);
+            edinburgh.ConnectTo(glasgow);
+
+
+            // What is London connected to first?
+            //Console.Out.WriteLine(london.Edges[0].OtherNode(london).Data);
+
+            london.DepthFirstTraversalIterative();
+        }
+
+        static void binaryTree()
+        {
+            var bTree = new BinaryTree<int>(5);
+
+            bTree.Add(10);
+
+            bTree.Add(3);
+
+            bTree.InOrder();
+
+            bTree.Exists(5);
         }
 
         static void schoolDirectory()
@@ -20,7 +51,7 @@ namespace learnCSharp
             Pupil[] pupil = new Pupil[1000];    // In release code, you'd definitely not
                                                 // hardcode this, you'd use a List or similar!
 
-            teacher = new Teacher("John Smith", "L5");
+            teacher = new Teacher("John Jones", "L5");
 
             teacher.eyeColour = Teacher.colour.BLUE;
 
@@ -41,6 +72,14 @@ namespace learnCSharp
             l.append(5);
             l.append(10);
 
+            try
+            {
+                l.deleteItem(6);
+            }
+            catch (NullReferenceException e)
+            {
+                // Do nothing, we're happy
+            }
 
             /* l.printAll() */
 
@@ -52,7 +91,7 @@ namespace learnCSharp
             l = null;
         }
 
-        static void Sort(string[] args)
+        static void Sort()
         {
             char response;
 
