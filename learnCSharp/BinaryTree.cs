@@ -36,7 +36,25 @@ public class BinaryTree<T> where T : IComparable
         // If data is greater than this.data
         if (data.CompareTo(this.data) > 0)
         {
-            
+            try
+            {
+                this.right.Add(data);
+            }
+            catch (NullReferenceException e)
+            {
+                this.right = new BinaryTree<T>(data);
+            }
+        } 
+        else
+        {
+            try
+            {
+                this.left.Add(data);
+            }
+            catch (NullReferenceException e)
+            {
+                this.left = new BinaryTree<T>(data);
+            }
         }
     }
 
@@ -59,12 +77,29 @@ public class BinaryTree<T> where T : IComparable
 
     public void PreOrder()
     {
+        Console.Out.WriteLine(data);
+        if (left != null)
+        {
+            left.InOrder();
+        }
+        if (right != null)
+        {
+            right.InOrder();
+        }
 
     }
 
     public void PostOrder()
     {
-
+        if (left != null)
+        {
+            left.InOrder();
+        }
+        if (right != null)
+        {
+            right.InOrder();
+        }
+        Console.Out.WriteLine(data);
     }
 
     /// <summary>
@@ -77,8 +112,28 @@ public class BinaryTree<T> where T : IComparable
         // If they're equal
         if (data.CompareTo(this.data) == 0)
         {
-
+            return true;
         }
 
+        if (data.CompareTo(this.data) > 0)
+        {
+            try
+            {
+                return this.right.Exists(data);
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+        }
+
+        try
+        {
+            return this.left.Exists(data);
+        }
+        catch (NullReferenceException)
+        {
+            return false;
+        }
     }
 }
